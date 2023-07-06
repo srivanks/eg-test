@@ -5,10 +5,18 @@ const Product = ({ id, name, price, addToCart }: ProductProps) => {
   return (
     <div className="container m-auto grid grid-cols-3 sm:grid-cols-1">
       <div className="p-4 border">
+      <div className="flex items-center justify-between">
+        <p className="text-lg font-bold text-black truncate block capitalize">
+        Name:
+        </p>
         <p className="text-lg font-bold text-black truncate block capitalize">
           {name}
         </p>
-        <div className="flex items-center">
+        </div>
+        <div className="flex items-center justify-between">
+          <p className="text-lg font-semibold text-black cursor-auto my-3">
+            Price:
+          </p>
           <p className="text-lg font-semibold text-black cursor-auto my-3">
             ${price}
           </p>

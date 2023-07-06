@@ -11,7 +11,7 @@ export type ProductProps = {
   id: number
   price: number
   name: string
-  addToCart: (product: ProductProps) => void
+  addToCart: (id: number) => void
 }
 
 export type ItemProps = {
