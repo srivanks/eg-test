@@ -1,0 +1,37 @@
+{
+    "products": [
+        {
+            "name": "Victoria Bitter",
+            "price": 21.49
+        },
+        {
+            "name": "Crown Lager",
+            "price": 22.99
+        },
+        {
+            "name": "Coopers",
+            "price": 20.49
+        },
+        {
+            "name": "Tooheys Extra Dry",
+            "price": 19.99
+        }
+    ],
+    "promotions": [
+        {
+            "name": "Current month special on VB",
+            "definition": "$2.00 off",
+            "type": "Product"
+        },
+        {
+            "name": "BOGOF on Coopers",
+            "definition": "Buy one and get one free",
+            "type": "Trolley"
+        },
+        {
+            "name": "Spend and save",
+            "definition": "Spend $50 and $5 off the total",
+            "type": "Trolley"
+        }
+    ]
+}
