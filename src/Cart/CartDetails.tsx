@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
-import { CartProps } from "../types/types";
+import { Link } from "react-router-dom"
+import { CartProps } from "../types/types"
 
 function CartDetails({ items, totalNumberOfProducts, totalPrice }: CartProps) {
-  console.log(items);
+  console.log(items)
   return (
     <div className="container mx-auto mt-10">
       <div className="flex shadow my-10">
@@ -31,7 +31,7 @@ function CartDetails({ items, totalNumberOfProducts, totalPrice }: CartProps) {
               Total
             </h3>
           </div>
-          {items.map((c) => {
+          {items.map(c => {
             return (
               <div className="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
                 <div className="flex w-2/5">
@@ -49,12 +49,12 @@ function CartDetails({ items, totalNumberOfProducts, totalPrice }: CartProps) {
                   ${(c.quantity * c.price).toFixed(2)}
                 </span>
               </div>
-            );
+            )
           })}
           <div id="summary" className="w-2/5 py-10">
-          <Link to={"/"} className="flex font-semibold text-indigo-600 mt-10">
-            Continue Shopping
-          </Link>
+            <Link to={"/"} className="flex font-semibold text-indigo-600 mt-10">
+              Continue Shopping
+            </Link>
           </div>
         </div>
 
@@ -74,7 +74,7 @@ function CartDetails({ items, totalNumberOfProducts, totalPrice }: CartProps) {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default CartDetails;
+export default CartDetails

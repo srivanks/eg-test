@@ -1,10 +1,10 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
-import { CartContext } from "../CartContext";
-import CartDetails from "./CartDetails";
+import { useContext } from "react"
+import { Link } from "react-router-dom"
+import { CartContext } from "../CartContext"
+import CartDetails from "./CartDetails"
 
 const Cart = () => {
-  const { cart } = useContext(CartContext);
+  const { cart } = useContext(CartContext)
   if (cart.items.length === 0) {
     return (
       <div className="container mx-auto border bg-gray-200 rounded px-4 m-4 py-5">
@@ -16,10 +16,10 @@ const Cart = () => {
           here.
         </Link>
       </div>
-    );
+    )
   }
 
-  return <CartDetails {...cart} />;
-};
+  return <CartDetails {...cart} />
+}
 
-export default Cart;
+export default Cart

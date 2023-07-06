@@ -14,6 +14,13 @@ export type ProductProps = {
   addToCart: (id: number) => void
 }
 
+export type PromotionProps = {
+  id: number
+  definition: string
+  type: string
+  name: string
+}
+
 export type ItemProps = {
   id: number
   name: string
