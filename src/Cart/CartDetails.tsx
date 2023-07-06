@@ -51,9 +51,11 @@ function CartDetails({ items, totalNumberOfProducts, totalPrice }: CartProps) {
               </div>
             );
           })}
+          <div id="summary" className="w-2/5 py-10">
           <Link to={"/"} className="flex font-semibold text-indigo-600 mt-10">
             Continue Shopping
           </Link>
+          </div>
         </div>
 
         <div id="summary" className="w-1/4 px-8 py-10">
