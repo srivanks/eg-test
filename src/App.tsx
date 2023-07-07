@@ -39,9 +39,7 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={
-              <Products products={products} promotions={promotions} />
-            }
+            element={<Products products={products} promotions={promotions} />}
           />
           <Route path="/cart" element={<Cart />} />
           <Route path="*" element={<div>404</div>} />

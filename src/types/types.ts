@@ -43,5 +43,6 @@ export type CartProps = {
   items: Array<ItemProps>
   totalNumberOfProducts: number
   // totalPrice: number
-  discountedPrice?: number
+  discountedPrice?: number,
+  cartPromotion: any
 }

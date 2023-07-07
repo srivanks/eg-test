@@ -44,7 +44,7 @@ const Cart = () => {
     )
   }
 
-  return <CartDetails {...cart} />
+  return <CartDetails {...cart} cartPromotion={cartPromotion} />
 }
 
 export default Cart

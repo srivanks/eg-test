@@ -1,14 +1,26 @@
 import { Link } from "react-router-dom"
 import { CartProps } from "../types/types"
 
-function CartDetails({ items, totalNumberOfProducts }: CartProps) {
+function CartDetails({
+  items,
+  totalNumberOfProducts,
+  cartPromotion,
+}: CartProps) {
   const showDiscountColumn =
     items.filter(i => typeof i.discountKey === "string").length > 0
 
-  const totalPrice = items.reduce(
+  const totalCostPrice = items.reduce((a, b) => a + b.quantity * b.price, 0)
+  const totalDiscountedPrice = items.reduce(
     (a, b) => a + b.quantity * b.discountedPrice,
     0,
   )
+
+  let cartDiscount = 0;
+  if (cartPromotion) {
+    if (totalCostPrice > cartPromotion.minCost) {
+      cartDiscount = cartPromotion.discount
+    }
+  }
   return (
     <div className="container mx-auto mt-10">
       <div className="flex shadow my-10">
@@ -37,7 +49,6 @@ function CartDetails({ items, totalNumberOfProducts }: CartProps) {
             </thead>
             <tbody>
               {items.map((c, i) => {
-                console.log(c)
                 return (
                   <tr key={i} className="text-sm h-8">
                     <td>{c.name}</td>
@@ -62,15 +73,46 @@ function CartDetails({ items, totalNumberOfProducts }: CartProps) {
           <h1 className="font-semibold text-2xl border-b pb-8">
             Order Summary
           </h1>
-          <div className="mt-8">
-            <div className="flex font-semibold justify-between py-6 text-sm uppercase">
+          <div className="my-4">
+            <div className="flex font-semibold justify-between text-sm uppercase">
               <span>Total cost</span>
-              <span>${totalPrice.toFixed(2)}</span>
+              <span>${totalCostPrice.toFixed(2)}</span>
             </div>
-            <button className="w-full bg-blue-600 text-white border rounded-full py-3 hover:bg-blue-700">
-              Checkout
-            </button>
           </div>
+          {cartPromotion && (
+            <div className="my-4">
+              <div className="flex font-semibold justify-between text-sm uppercase text-green-700">
+                <span>Cart discount</span>
+                <span>${cartDiscount.toFixed(2)}</span>
+              </div>
+            </div>
+          )}
+          <div className="my-4">
+            <div className="flex font-semibold justify-between text-sm uppercase text-green-700">
+              <span>Items discount</span>
+              <span>${(totalCostPrice - totalDiscountedPrice).toFixed(2)}</span>
+            </div>
+          </div>
+          <div className="my-4">
+            <div className="flex font-semibold justify-between text-sm uppercase text-green-700">
+              <span>Total Savings</span>
+              <span>
+                $
+                {(totalCostPrice - totalDiscountedPrice + cartDiscount).toFixed(
+                  2,
+                )}
+              </span>
+            </div>
+          </div>
+          <div className="my-4">
+            <div className="flex font-semibold justify-between text-sm uppercase">
+              <span>You price</span>
+              <span>${(totalDiscountedPrice - cartDiscount).toFixed(2)}</span>
+            </div>
+          </div>
+          <button className="w-full bg-blue-600 text-white border rounded-full py-3 hover:bg-blue-700">
+            Checkout
+          </button>
         </div>
       </div>
     </div>
