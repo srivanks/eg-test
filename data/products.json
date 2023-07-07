@@ -27,5 +27,22 @@
       "discount": 5,
       "minCost": 50
     }
+  ],
+  "promotions": [
+    {
+      "name": "Current month special on VB",
+      "definition": "$2.00 off",
+      "type": "Product"
+    },
+    {
+      "name": "BOGOF on Coopers",
+      "definition": "Buy one and get one free",
+      "type": "Trolley"
+    },
+    {
+      "name": "Spend and save",
+      "definition": "Spend $50 and $5 off the total",
+      "type": "Trolley"
+    }
   ]
 }

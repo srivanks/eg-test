@@ -4,7 +4,7 @@ import Product from "../Product/Product"
 import Promotions from "../Promotions"
 import { ItemProps, ProductProps, ProductsProps } from "../types/types"
 
-const Products = ({ products, promotions }: ProductsProps) => {
+const Products = ({ products }: ProductsProps) => {
   const { cart, setCart } = useContext(CartContext)
 
   function processPromotionsRules(discount, quantity) {
@@ -52,7 +52,6 @@ const Products = ({ products, promotions }: ProductsProps) => {
     setCart({
       items: [{ ...item }],
       totalNumberOfProducts: 1,
-      totalPrice: item.discountedPrice * item.quantity,
     })
   }
 
@@ -78,7 +77,6 @@ const Products = ({ products, promotions }: ProductsProps) => {
         ...cart.items.slice(productToBeAdded + 1),
       ],
       totalNumberOfProducts: cart.totalNumberOfProducts + 1,
-      totalPrice: cartItem.discountedPrice + cart.totalPrice,
     })
   }
 
@@ -122,7 +120,7 @@ const Products = ({ products, promotions }: ProductsProps) => {
 
   return (
     <>
-      <Promotions promotions={promotions} />
+      <Promotions />
       <div className="px-8">
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-4 md:grid-cols-2 lg:gap-8">
           {products.map((p, i) => (

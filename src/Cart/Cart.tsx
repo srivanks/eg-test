@@ -8,7 +8,7 @@ const Cart = () => {
   if (cart.items.length === 0) {
     return (
       <div className="container mx-auto border bg-gray-200 rounded px-4 m-4 py-5">
-        Cart is empty! Please explore our selection of wines
+        Cart is empty! Please explore our selection of wines{" "}
         <Link
           to={"/"}
           className="underline text-blue-600 hover:text-blue-800 visited:text-purple-600"

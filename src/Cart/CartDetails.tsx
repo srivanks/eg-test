@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom"
 import { CartProps } from "../types/types"
 
-function CartDetails({ items, totalNumberOfProducts, totalPrice }: CartProps) {
+function CartDetails({ items, totalNumberOfProducts }: CartProps) {
   const showDiscountColumn =
     items.filter(i => typeof i.discountKey === "string").length > 0
-  let columnDivider = showDiscountColumn ? 4 : 5
-  console.log(columnDivider)
+
+  const totalPrice = items.reduce(
+    (a, b) => a + b.quantity * b.discountedPrice,
+    0,
+  )
   return (
     <div className="container mx-auto mt-10">
       <div className="flex shadow my-10">

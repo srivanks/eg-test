@@ -13,7 +13,6 @@ function App() {
   const [cart, setCart] = useState<CartProps>({
     items: [],
     totalNumberOfProducts: 0,
-    totalPrice: 0,
   })
 
   let {

@@ -1,8 +1,20 @@
 import { Carousel } from "react-responsive-carousel"
 import "react-responsive-carousel/lib/styles/carousel.min.css" // requires a
-import { PromotionsProps } from "./types/types"
+import { PromotionProps } from "./types/types"
+import useFetch from "./hooks/fetch"
+import Loader from "./Loader/Loader"
 
-const Promotions = ({ promotions }: PromotionsProps) => {
+const Promotions = () => {
+  let {
+    isLoading: isPromotionLoading,
+    error: promotionError,
+    data: promotions,
+  } = useFetch<PromotionProps>(import.meta.env.VITE_PROMOTIONS_API_URL)
+
+  if (promotionError) {
+    return <div>Cant load promotion. Please try again later.</div>
+  }
+  if (isPromotionLoading) return <Loader />
   return (
     <Carousel
       autoPlay
@@ -12,7 +24,7 @@ const Promotions = ({ promotions }: PromotionsProps) => {
       showStatus={false}
       showArrows={false}
     >
-      {promotions.map(d => (
+      {promotions.map((d) => (
         <div key={d.id} className="m-5">
           <div className="min-w-full flex justify-center items-center">
             {d.name}

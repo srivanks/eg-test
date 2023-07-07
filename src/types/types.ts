@@ -42,6 +42,6 @@ export type ItemProps = {
 export type CartProps = {
   items: Array<ItemProps>
   totalNumberOfProducts: number
-  totalPrice: number
+  // totalPrice: number
   discountedPrice?: number
 }
