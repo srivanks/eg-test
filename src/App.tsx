@@ -2,7 +2,7 @@ import "./App.css"
 import Header from "./Header/Header"
 import Products from "./Products/Products"
 import { CartContext } from "./CartContext"
-import { CartProps, ProductProps, PromotionProps, PromotionsProps } from "./types/types"
+import { CartProps, ProductProps, PromotionProps } from "./types/types"
 import { useState } from "react"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import Cart from "./Cart/Cart"
@@ -19,7 +19,7 @@ function App() {
   let {
     isLoading: isProductLoading,
     error: productError,
-    data: products
+    data: products,
   } = useFetch<ProductProps>(import.meta.env.VITE_PRODUCTS_API_URL)
 
   let {
@@ -41,10 +41,7 @@ function App() {
           <Route
             path="/"
             element={
-              <Products
-                products={products}
-                promotions={cartPromotions}
-              />
+              <Products products={products} promotions={cartPromotions} />
             }
           />
           <Route path="/cart" element={<Cart />} />

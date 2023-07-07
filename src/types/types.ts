@@ -4,8 +4,8 @@ export type ContextProps = {
 }
 
 export type ProductsProps = {
-  notify?: () => void,
-  products: Array<ProductProps>,
+  notify?: () => void
+  products: Array<ProductProps>
   promotions: Array<PromotionProps>
 }
 
@@ -13,6 +13,8 @@ export type ProductProps = {
   id: number
   price: number
   name: string
+  discountKey?: string
+  discountValue?: string
   addToCart: (id: number) => void
 }
 
@@ -32,10 +34,14 @@ export type ItemProps = {
   name: string
   price: number
   quantity: number
+  discountKey: string
+  discountValue: string
+  discountedPrice: number
 }
 
 export type CartProps = {
   items: Array<ItemProps>
   totalNumberOfProducts: number
   totalPrice: number
+  discountedPrice?: number
 }

@@ -3,7 +3,8 @@
     {
       "name": "Victoria Bitter",
       "price": 21.49,
-      "discount": 2
+      "discountKey": "Discount $2",
+      "discountValue": "2"
     },
     {
       "name": "Crown Lager",
@@ -12,7 +13,8 @@
     {
       "name": "Coopers",
       "price": 20.49,
-      "discount": "bogo"
+      "discountKey": "Buy 1 get 1",
+      "discountValue": "bogo"
     },
     {
       "name": "Tooheys Extra Dry",
