@@ -34,6 +34,7 @@ function CartDetails({ items, totalNumberOfProducts, totalPrice }: CartProps) {
             </thead>
             <tbody>
               {items.map((c, i) => {
+                console.log(c)
                 return (
                   <tr key={i} className="text-sm h-8">
                     <td>{c.name}</td>
