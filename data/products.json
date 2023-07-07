@@ -21,13 +21,11 @@
       "price": 19.99
     }
   ],
-  "cartPromotions": [
-    {
-      "name": "Spend and save",
-      "discount": 5,
-      "minCost": 50
-    }
-  ],
+  "cartPromotions": {
+    "name": "Spend and save",
+    "discount": 5,
+    "minCost": 50
+  },
   "promotions": [
     {
       "name": "Current month special on VB",

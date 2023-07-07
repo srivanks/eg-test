@@ -24,7 +24,7 @@ const Promotions = () => {
       showStatus={false}
       showArrows={false}
     >
-      {promotions.map((d) => (
+      {promotions.map(d => (
         <div key={d.id} className="m-5">
           <div className="min-w-full flex justify-center items-center">
             {d.name}

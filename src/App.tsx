@@ -22,15 +22,15 @@ function App() {
   } = useFetch<ProductProps>(import.meta.env.VITE_PRODUCTS_API_URL)
 
   let {
-    isLoading: isCartPromotionLoading,
-    error: cartPromotionError,
-    data: cartPromotions,
-  } = useFetch<PromotionProps>(import.meta.env.VITE_CART_PROMOTIONS_API_URL)
+    isLoading: isPromotionLoading,
+    error: promotionError,
+    data: promotions,
+  } = useFetch<PromotionProps>(import.meta.env.VITE_PROMOTIONS_API_URL)
 
-  if (productError || cartPromotionError) {
+  if (productError || promotionError) {
     return <div>some error</div>
   }
-  if (isProductLoading || isCartPromotionLoading) return <Loader />
+  if (isProductLoading || isPromotionLoading) return <Loader />
 
   return (
     <BrowserRouter>
@@ -40,7 +40,7 @@ function App() {
           <Route
             path="/"
             element={
-              <Products products={products} promotions={cartPromotions} />
+              <Products products={products} promotions={promotions} />
             }
           />
           <Route path="/cart" element={<Cart />} />
