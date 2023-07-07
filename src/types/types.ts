@@ -4,7 +4,9 @@ export type ContextProps = {
 }
 
 export type ProductsProps = {
-  notify: () => void
+  notify?: () => void,
+  products: Array<ProductProps>,
+  promotions: Array<PromotionProps>
 }
 
 export type ProductProps = {
@@ -19,6 +21,10 @@ export type PromotionProps = {
   definition: string
   type: string
   name: string
+}
+
+export type PromotionsProps = {
+  promotions: Array<PromotionProps>
 }
 
 export type ItemProps = {

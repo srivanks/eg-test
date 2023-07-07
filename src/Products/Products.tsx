@@ -1,15 +1,10 @@
 import { useContext } from "react"
 import { CartContext } from "../CartContext"
-import Loader from "../Loader/Loader"
 import Product from "../Product/Product"
 import Promotions from "../Promotions"
-import useFetch from "../hooks/fetch"
-import { ItemProps, ProductProps } from "../types/types"
+import { ItemProps, ProductProps, ProductsProps } from "../types/types"
 
-const Products = () => {
-  const { isLoading, error, data } = useFetch<ProductProps>(
-    import.meta.env.VITE_PRODUCTS_API_URL,
-  )
+const Products = ({products, promotions}: ProductsProps) => {
   const { cart, setCart } = useContext(CartContext)
 
   function addItemToEmptyCart(id: number, selectedProduct?: ProductProps) {
@@ -42,7 +37,7 @@ const Products = () => {
     })
   }
 
-  function addNewProductCountInCart(
+  function addNewProductInCart(
     id: number,
     selectedProduct?: ProductProps,
   ) {
@@ -60,7 +55,7 @@ const Products = () => {
   }
 
   const addToCart = (id: number): void => {
-    const selectedProduct = data.find(p => p.id === id)
+    const selectedProduct = products.find(p => p.id === id)
 
     if (cart.items.length === 0) {
       addItemToEmptyCart(id, selectedProduct)
@@ -69,30 +64,19 @@ const Products = () => {
         p => p.id === selectedProduct?.id,
       )
       if (productToBeAdded === -1) {
-        addNewProductCountInCart(id, selectedProduct)
+        addNewProductInCart(id, selectedProduct)
       } else {
         incrementProductCountInCart(productToBeAdded)
       }
     }
   }
 
-  if (error) {
-    return (
-      <h3>
-        An error occurred when fetching data. Please check the API and try
-        again.
-      </h3>
-    )
-  }
-  if (isLoading) {
-    return <Loader />
-  }
   return (
     <>
-      <Promotions />
+      <Promotions promotions={promotions} />
       <div className="px-8">
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-4 md:grid-cols-2 lg:gap-8">
-          {data.map((p, i) => (
+          {products.map((p, i) => (
             <Product
               key={i}
               id={i}
