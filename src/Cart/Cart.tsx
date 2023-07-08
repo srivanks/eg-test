@@ -1,50 +1,51 @@
-import { useContext, useEffect, useState } from "react"
-import { Link } from "react-router-dom"
-import { CartContext } from "../CartContext"
-import CartDetails from "./CartDetails"
-import Loader from "../Loader/Loader"
+import { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { CartContext } from "../CartContext";
+import CartDetails from "./CartDetails";
+import Loader from "../Loader/Loader";
 
 const Cart = () => {
-  const { cart } = useContext(CartContext)
-  const [isLoading, setIsLoading] = useState<boolean>()
-  const [cartPromotion, setCartPromotion] = useState()
+  const { cart } = useContext(CartContext);
+  const [isLoading, setIsLoading] = useState<boolean>();
+  const [cartPromotion, setCartPromotion] = useState();
   async function fetchData(url: string) {
     try {
-      const response = await fetch(url)
+      const response = await fetch(url);
       if (response.ok) {
-        const data = await response.json()
-        setCartPromotion(data)
-        setIsLoading(false)
+        const data = await response.json();
+        setCartPromotion(data);
+        setIsLoading(false);
       } else {
-        setIsLoading(false)
+        setIsLoading(false);
       }
     } catch (error) {
-      setIsLoading(false)
+      setIsLoading(false);
     }
   }
   useEffect(() => {
-    fetchData(import.meta.env.VITE_CART_PROMOTIONS_API_URL)
-  }, [])
+    //@ts-ignore
+    fetchData(import.meta.env.VITE_CART_PROMOTIONS_API_URL);
+  }, []);
 
   if (isLoading) {
-    return <Loader />
+    return <Loader />;
   }
 
   if (cart.items.length === 0) {
     return (
-      <div className="container mx-auto border bg-gray-200 rounded px-4 m-4 py-5">
+      <div className='container mx-auto border bg-gray-200 rounded px-4 m-4 py-5'>
         Cart is empty! Please explore our selection of wines{" "}
         <Link
           to={"/"}
-          className="underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
+          className='underline text-blue-600 hover:text-blue-800 visited:text-purple-600'
         >
           here.
         </Link>
       </div>
-    )
+    );
   }
 
-  return <CartDetails {...cart} cartPromotion={cartPromotion} />
-}
+  return <CartDetails {...cart} cartPromotion={cartPromotion} />;
+};
 
-export default Cart
+export default Cart;

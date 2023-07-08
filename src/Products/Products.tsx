@@ -1,13 +1,13 @@
-import { useContext } from "react"
-import { CartContext } from "../CartContext"
-import Product from "../Product/Product"
-import Promotions from "../Promotions"
-import { ItemProps, ProductProps, ProductsProps } from "../types/types"
+import { useContext } from "react";
+import { CartContext } from "../CartContext";
+import Product from "../Product/Product";
+import Promotions from "../Promotions";
+import { ItemProps, ProductProps, ProductsProps } from "../types/types";
 
 const Products = ({ products }: ProductsProps) => {
-  const { cart, setCart } = useContext(CartContext)
+  const { cart, setCart } = useContext(CartContext);
 
-  function processPromotionsRules(discount, quantity) {
+  function processPromotionsRules(quantity: number, discount?: string) {
     //This logic is based on 3 conditions (this logic should be redone as we add more discount rules)
     //For a product, there could be a discount in price, a discount in number or items or no discount
     let discountValue =
@@ -15,28 +15,28 @@ const Products = ({ products }: ProductsProps) => {
         ? { logicalOperation: "-", ordinal: 0 }
         : discount === "bogo"
         ? { logicalOperation: "/", ordinal: quantity % 2 === 0 ? 2 : 1 }
-        : { logicalOperation: "-", ordinal: parseInt(discount as string) }
+        : { logicalOperation: "-", ordinal: parseInt(discount as string) };
 
-    return discountValue
+    return discountValue;
   }
 
   function getDiscountPrice(
     price: number,
     discount: { logicalOperation: string; ordinal: number },
   ) {
-    let discountedPrice = 0
+    let discountedPrice = 0;
     if (discount.logicalOperation === "/") {
-      discountedPrice = price / discount.ordinal
+      discountedPrice = price / discount.ordinal;
     } else if (discount.logicalOperation === "-") {
-      discountedPrice = price - discount.ordinal
+      discountedPrice = price - discount.ordinal;
     } else if (discount.logicalOperation === "*") {
-      discountedPrice = price * discount.ordinal
+      discountedPrice = price * discount.ordinal;
     }
-    return discountedPrice
+    return discountedPrice;
   }
 
   function addItemToEmptyCart(id: number, selectedProduct?: ProductProps) {
-    let discount = processPromotionsRules(selectedProduct?.discountValue, 1)
+    let discount = processPromotionsRules(1, selectedProduct?.discountValue);
     const item: ItemProps = {
       id,
       name: selectedProduct?.name as string,
@@ -48,18 +48,19 @@ const Products = ({ products }: ProductsProps) => {
         discount,
       ),
       quantity: 1,
-    }
+    };
+
     setCart({
       items: [{ ...item }],
       totalNumberOfProducts: 1,
-    })
+    });
   }
 
   function incrementProductCountInCart(productToBeAdded: number) {
     let discount = processPromotionsRules(
-      cart.items[productToBeAdded].discountValue,
       (cart.items[productToBeAdded].quantity as number) + 1,
-    )
+      cart.items[productToBeAdded].discountValue,
+    );
     let cartItem = {
       ...cart.items[productToBeAdded],
       quantity: (cart.items[productToBeAdded].quantity as number) + 1,
@@ -69,7 +70,7 @@ const Products = ({ products }: ProductsProps) => {
         cart.items[productToBeAdded].price as number,
         discount,
       ),
-    }
+    };
     setCart({
       items: [
         ...cart.items.slice(0, productToBeAdded),
@@ -77,11 +78,11 @@ const Products = ({ products }: ProductsProps) => {
         ...cart.items.slice(productToBeAdded + 1),
       ],
       totalNumberOfProducts: cart.totalNumberOfProducts + 1,
-    })
+    });
   }
 
   function addNewProductInCart(id: number, selectedProduct?: ProductProps) {
-    let discount = processPromotionsRules(selectedProduct?.discountValue, 1)
+    let discount = processPromotionsRules(1, selectedProduct?.discountValue);
     let cartItem: ItemProps = {
       id,
       name: selectedProduct?.name as string,
@@ -93,36 +94,35 @@ const Products = ({ products }: ProductsProps) => {
         selectedProduct?.price as number,
         discount,
       ),
-    }
+    };
     setCart({
       items: [...cart.items, { ...cartItem }],
       totalNumberOfProducts: cart.totalNumberOfProducts + 1,
-      totalPrice: cart.totalPrice + cartItem.discountedPrice,
-    })
+    });
   }
 
   const addToCart = (id: number): void => {
-    const selectedProduct = products.find(p => p.id === id)
+    const selectedProduct = products.find(p => p.id === id);
 
     if (cart.items.length === 0) {
-      addItemToEmptyCart(id, selectedProduct)
+      addItemToEmptyCart(id, selectedProduct);
     } else {
       const productToBeAdded = cart.items.findIndex(
         p => p.id === selectedProduct?.id,
-      )
+      );
       if (productToBeAdded === -1) {
-        addNewProductInCart(id, selectedProduct)
+        addNewProductInCart(id, selectedProduct);
       } else {
-        incrementProductCountInCart(productToBeAdded)
+        incrementProductCountInCart(productToBeAdded);
       }
     }
-  }
+  };
 
   return (
     <>
       <Promotions />
-      <div className="px-8">
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-4 md:grid-cols-2 lg:gap-8">
+      <div className='px-8'>
+        <div className='grid grid-cols-1 gap-4 lg:grid-cols-4 md:grid-cols-2 lg:gap-8'>
           {products.map((p, i) => (
             <Product
               key={i}
@@ -137,7 +137,7 @@ const Products = ({ products }: ProductsProps) => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Products
+export default Products;
