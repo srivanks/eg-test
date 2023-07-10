@@ -78,13 +78,3 @@ To run tests, run the following command
 ```bash
   npm run test
 ```
-
-# Screen shots
-## Page 1
-```
-![ScreenShot](./images/page1.png "Screen 1")
-```
-## Page 2
-```
-![ScreenShot](./images/page1.png "Screen 1")
-```
