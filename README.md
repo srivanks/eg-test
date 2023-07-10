@@ -2,7 +2,8 @@
 
 This project follows this data structure which will be generated on the server.
 
-##  Data structure
+## Data structure
+
 ```data structure
 
 {
