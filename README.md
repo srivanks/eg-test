@@ -46,7 +46,7 @@ Install dependencies with npm
 
 ```bash
   cd eg-test
-  npm install eg-test
+  npm install
 ```
 
 ## Run server
