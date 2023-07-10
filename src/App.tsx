@@ -1,31 +1,56 @@
-import "./App.css"
-import Header from "./Header/Header"
-import Products from "./Products/Products"
-import { CartContext } from "./CartContext"
-import { CartProps } from "./types/types"
-import { useState } from "react"
-import { BrowserRouter, Route, Routes } from "react-router-dom"
-import Cart from "./Cart/Cart"
+import "./App.css";
+import Header from "./Header/Header";
+import Products from "./Products/Products";
+import { CartContext } from "./CartContext";
+import { CartProps, ProductProps, PromotionProps } from "./types/types";
+import { useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Cart from "./Cart/Cart";
+import useFetch from "./hooks/fetch";
+import Loader from "./Loader/Loader";
 
 function App() {
   const [cart, setCart] = useState<CartProps>({
     items: [],
     totalNumberOfProducts: 0,
-    totalPrice: 0,
-  })
+    discountedPrice: 0,
+    cartPromotion: 0,
+  });
+
+  let {
+    isLoading: isProductLoading,
+    error: productError,
+    data: products,
+    //@ts-ignore
+  } = useFetch<ProductProps>(import.meta.env.VITE_PRODUCTS_API_URL);
+
+  let {
+    isLoading: isPromotionLoading,
+    error: promotionError,
+    data: promotions,
+    // @ts-ignore
+  } = useFetch<PromotionProps>(import.meta.env.VITE_PROMOTIONS_API_URL);
+
+  if (productError || promotionError) {
+    return <div>Server error. Please try again in some time.</div>;
+  }
+  if (isProductLoading || isPromotionLoading) return <Loader />;
 
   return (
     <BrowserRouter>
       <CartContext.Provider value={{ cart, setCart }}>
         <Header />
         <Routes>
-          <Route path="/" element={<Products />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="*" element={<div>404</div>} />
+          <Route
+            path='/'
+            element={<Products products={products} promotions={promotions} />}
+          />
+          <Route path='/cart' element={<Cart />} />
+          <Route path='*' element={<div>404</div>} />
         </Routes>
       </CartContext.Provider>
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;
