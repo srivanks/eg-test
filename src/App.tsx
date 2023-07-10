@@ -32,7 +32,7 @@ function App() {
   } = useFetch<PromotionProps>(import.meta.env.VITE_PROMOTIONS_API_URL);
 
   if (productError || promotionError) {
-    return <div>some error</div>;
+    return <div>Server error. Please try again in some time.</div>;
   }
   if (isProductLoading || isPromotionLoading) return <Loader />;
 

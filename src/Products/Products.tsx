@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { CartContext } from "../CartContext";
 import Product from "../Product/Product";
-import Promotions from "../Promotions";
+import Promotions from "../Promotions/Promotions";
 import { ItemProps, ProductProps, ProductsProps } from "../types/types";
 
 const Products = ({ products }: ProductsProps) => {
@@ -29,8 +29,6 @@ const Products = ({ products }: ProductsProps) => {
       discountedPrice = price / discount.ordinal;
     } else if (discount.logicalOperation === "-") {
       discountedPrice = price - discount.ordinal;
-    } else if (discount.logicalOperation === "*") {
-      discountedPrice = price * discount.ordinal;
     }
     return discountedPrice;
   }

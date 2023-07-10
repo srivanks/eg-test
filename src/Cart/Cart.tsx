@@ -1,13 +1,14 @@
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../CartContext";
-import CartDetails from "./CartDetails";
 import Loader from "../Loader/Loader";
+import CartDetails from "./CartDetails";
 
 const Cart = () => {
   const { cart } = useContext(CartContext);
   const [isLoading, setIsLoading] = useState<boolean>();
   const [cartPromotion, setCartPromotion] = useState();
+
   async function fetchData(url: string) {
     try {
       const response = await fetch(url);

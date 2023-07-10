@@ -1,8 +1,8 @@
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a
-import { PromotionProps } from "./types/types";
-import useFetch from "./hooks/fetch";
-import Loader from "./Loader/Loader";
+import { PromotionProps } from "../types/types";
+import useFetch from "../hooks/fetch";
+import Loader from "../Loader/Loader";
 
 const Promotions = () => {
   let {

@@ -15,7 +15,7 @@ const Header = () => {
         <div className='flex justify-center items-center'>
           <div className='relative'>
             <AiOutlineShopping size={40}></AiOutlineShopping>
-            <div className='w-[10px] h-[10px] top-0 right-[-5px] absolute border bg-gray-300 text-lg'>
+            <div className='w-[10px] h-[10px] top-0 right-[-5px] absolute bg-gray-300 text-lg'>
               {cart.totalNumberOfProducts}
             </div>
           </div>

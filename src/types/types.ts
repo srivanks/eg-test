@@ -43,4 +43,5 @@ export type CartProps = {
   items: Array<ItemProps>;
   totalNumberOfProducts: number;
   discountedPrice?: number;
+  cartPromotion?: any;
 };
