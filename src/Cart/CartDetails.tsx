@@ -106,7 +106,7 @@ function CartDetails({
           </div>
           <div className='my-4'>
             <div className='flex font-semibold justify-between text-sm uppercase'>
-              <span>You price</span>
+              <span>Your price</span>
               <span>${(totalDiscountedPrice - cartDiscount).toFixed(2)}</span>
             </div>
           </div>

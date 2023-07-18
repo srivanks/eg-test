@@ -122,6 +122,7 @@ const Products = ({ products }: ProductsProps) => {
       <div className='px-8'>
         <div className='grid grid-cols-1 gap-4 lg:grid-cols-4 md:grid-cols-2 lg:gap-8'>
           {products.map((p, i) => (
+            //single responsibility
             <Product
               key={i}
               id={i}
